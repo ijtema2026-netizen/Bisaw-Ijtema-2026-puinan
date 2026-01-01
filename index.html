@@ -1,483 +1,390 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta name="google-site-verification" content="2yR25U3QuvgLrQeiKNIyy3xk0zUl5z7NTvwtRJnLAtc" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>বিশ্ব ইজতেমা ২০২৬: পুইনান (Puinan) বিশেষ আপডেট / Bishaw Ijtema2026 Puinan update</title>
+    <title>ইজতেমা লাইভ গাইড</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* কালার ভেরিয়েবল */
         :root {
-            --bg-body: #f3f6f4;
+            --bg-body: #f1f5f9;
+            --white: #ffffff;
             --primary: #15803d; 
             --primary-dark: #14532d;
             --gold: #d97706;
-            --glass: rgba(255, 255, 255, 0.95);
+            --text-main: #1e293b;
             --radius: 20px;
-            --contact-color: #0284c7;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        /* বেসিক রিসেট */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Hind Siliguri', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--bg-body); color: #334155; padding-bottom: 110px; }
-        a { text-decoration: none; color: inherit; }
-        button { cursor: pointer; border: none; outline: none; }
+        body { background: var(--bg-body); color: var(--text-main); padding-bottom: 110px; }
 
-        /* হেডার ডিজাইন */
+        /* ১. হেডার */
         .header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            padding: 30px 20px 70px;
-            border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
-            color: white; text-align: center; position: relative;
-            box-shadow: 0 10px 30px rgba(21, 128, 61, 0.3);
+            padding: 25px 20px 50px; text-align: center;
+            border-bottom-left-radius: 35px; border-bottom-right-radius: 35px;
+            box-shadow: 0 10px 20px rgba(21, 128, 61, 0.2);
+            position: relative; z-index: 10; color: white;
         }
-        .header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 5px; }
-        .header p { opacity: 0.9; font-size: 0.9rem; font-weight: 300; }
-        .action-row { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
-        .header-btn {
-            background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);
-            color: white; padding: 8px 15px; border-radius: 50px; font-size: 0.85rem;
-            display: flex; align-items: center; gap: 5px; transition: 0.2s;
-        }
-        .header-btn:active { background: rgba(255,255,255,0.4); }
+        .header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .header p { font-size: 0.9rem; background: rgba(255,255,255,0.15); display: inline-block; padding: 4px 15px; border-radius: 20px; }
 
-        /* ফ্লোটিং ইনফো বক্স */
-        .info-float {
-            margin: -40px 20px 15px;
-            background: var(--glass); backdrop-filter: blur(10px);
-            border-radius: var(--radius); padding: 20px;
-            box-shadow: 0 10px 30px -10px rgba(21, 128, 61, 0.15);
-            display: flex; justify-content: space-around; text-align: center;
-            border: 1px solid rgba(255,255,255,0.5); position: relative; z-index: 10;
+        /* ২. ইনফো বক্স */
+        .mini-info-card {
+            background: var(--white); margin: -35px 20px 15px; border-radius: 15px;
+            padding: 0; box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            position: relative; z-index: 20; border: 2px solid white; overflow: hidden;
         }
-        .timer-box h3 { font-size: 1.5rem; color: var(--primary); margin: 0; line-height: 1; }
-        .timer-box span { font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; }
+        .info-content { padding: 12px; }
+        .date-strip { display: flex; justify-content: space-between; align-items: center; background: #ecfdf5; border-radius: 10px; padding: 8px 12px; margin-bottom: 10px; border: 1px solid #d1fae5; }
+        .date-text { font-weight: 700; color: var(--primary-dark); font-size: 0.85rem; }
+        .hijri-text { font-size: 0.85rem; color: #15803d; font-weight: 600; }
 
-        /* নোটিশ বোর্ড */
-        .notice-box {
-            background: white; padding: 10px; border-radius: 15px; margin: 0 20px 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03); display: flex; align-items: center;
-            border: 1px solid #e2e8f0; overflow: hidden;
-        }
-        .notice-tag {
-            background: #ef4444; color: white; padding: 4px 10px; border-radius: 8px;
-            font-size: 0.7rem; font-weight: 700; margin-right: 10px; white-space: nowrap;
-        }
-        marquee { font-size: 0.9rem; color: #334155; font-weight: 500; }
+        .namaz-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; }
+        .namaz-scroll::-webkit-scrollbar { display: none; }
+        .namaz-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 5px 10px; min-width: 70px; flex-shrink: 0; text-align: center; }
+        .n-name { font-size: 0.75rem; color: #64748b; font-weight: 600; }
+        .n-time { font-size: 0.9rem; color: var(--primary); font-weight: 700; }
 
-        /* মেইন মেনু আইকন */
-        .grid-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 0 20px 10px; }
-        .nav-box { text-align: center; cursor: pointer; transition: transform 0.2s; }
-        .nav-box:active { transform: scale(0.9); }
-        .icon-circle {
-            width: 50px; height: 50px; background: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 5px; font-size: 1.2rem; color: var(--primary);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
-        }
-        .nav-box span { font-size: 0.7rem; font-weight: 600; color: #475569; }
+        /* নোটিশ */
+        .notice-board { background: #fffbeb; border-top: 1px solid #fcd34d; padding: 8px 0; overflow: hidden; white-space: nowrap; position: relative; }
+        .notice-icon { position: absolute; left: 0; top: 0; bottom: 0; background: #fbbf24; z-index: 5; padding: 0 10px; display: flex; align-items: center; color: #78350f; font-size: 0.8rem; font-weight: 700; }
+        .marquee-text { display: inline-block; padding-left: 100%; animation: scroll 15s linear infinite; color: #92400e; font-size: 0.9rem; font-weight: 500; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* কার্ড এবং সেকশন */
-        .container { padding: 10px 20px; }
-        .section-head {
-            font-size: 1.1rem; font-weight: 700; color: var(--primary-dark);
-            margin: 10px 0 10px; display: flex; align-items: center; gap: 8px;
+        /* ৩. স্মার্ট লোকেশন */
+        .location-smart-card { background: white; margin: 0 20px 15px; border-radius: var(--radius); padding: 15px; box-shadow: var(--shadow); border: 1px solid #e2e8f0; text-align: center; }
+        .btn-save-big { width: 100%; background: linear-gradient(to right, #16a34a, #15803d); color: white; padding: 15px; border-radius: 12px; border: none; font-size: 1rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 5px 15px rgba(22, 163, 74, 0.3); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.02);} 100% {transform: scale(1);} }
+        .saved-controls { display: none; }
+        .saved-status { background: #dcfce7; color: #15803d; padding: 10px; border-radius: 8px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn-nav { background: #0284c7; color: white; padding: 12px; border-radius: 10px; border: none; }
+        .btn-del { background: #fee2e2; color: #ef4444; padding: 12px; border-radius: 10px; border: none; }
+
+        /* টুলস */
+        .quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 20px; margin-bottom: 20px; }
+        .action-btn { background: var(--white); padding: 12px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid white; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; color: var(--text-main); }
+        .icon-small { font-size: 1.2rem; color: var(--primary); }
+
+        /* ম্যাপ */
+        .section-title { padding: 5px 20px 10px; font-size: 1rem; font-weight: 700; color: var(--primary-dark); border-left: 5px solid var(--gold); margin: 25px 20px 10px; line-height: 1; }
+        .map-wrapper { margin: 0 20px; border-radius: var(--radius); overflow: hidden; border: 3px solid var(--white); box-shadow: var(--shadow); }
+
+        /* যাতায়াত */
+        .transport-card { background: white; margin: 20px; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); border: 1px solid #e2e8f0; }
+        .route-box { border-left: 2px dashed #cbd5e1; margin-left: 10px; padding-left: 20px; padding-bottom: 20px; position: relative; }
+        .route-box:last-child { border-left: none; padding-bottom: 0; }
+        .route-icon { position: absolute; left: -16px; top: 0; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .bg-train { background: #0ea5e9; } .bg-bus { background: #f59e0b; }
+        .route-title { font-weight: 700; color: #334155; font-size: 1rem; margin-bottom: 5px; }
+        .route-desc { font-size: 0.85rem; color: #64748b; line-height: 1.5; }
+        .highlight { font-weight: 700; color: #0284c7; }
+
+        /* হারানো প্রাপ্তি (WhatsApp) */
+        .lf-whatsapp-card { background: white; margin: 20px; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid #e2e8f0; }
+        .wa-btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+        .wa-btn { padding: 12px; border-radius: 10px; border: none; font-weight: 700; font-size: 0.9rem; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; }
+        .wa-lost { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+        .wa-found { background: #dcfce7; color: #16a34a; border: 1px solid #bbf7d0; }
+
+        /* 🔥 প্রবন্ধ সেকশন (নতুন) */
+        .article-card {
+            background: white; margin: 20px; padding: 25px 20px; border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
         }
-        .section-head::before { content: ''; width: 4px; height: 18px; background: var(--gold); border-radius: 2px; }
+        .article-list { list-style: none; padding: 0; }
+        .article-list li {
+            margin-bottom: 15px; font-size: 0.9rem; color: #475569;
+            line-height: 1.6; padding-left: 25px; position: relative;
+        }
+        .article-list li::before {
+            content: '✔'; position: absolute; left: 0; top: 2px;
+            color: var(--primary); font-weight: 800; font-size: 0.8rem;
+        }
+        .article-list strong { color: #1e293b; display: block; margin-bottom: 3px; font-size: 0.95rem; }
+
+        /* 🔥 বিশাল রাজকীয় ডিজিটাল তসবিহ */
+        .tasbeeh-card-royal {
+            margin: 30px 20px; text-align: center; 
+            background: white; padding: 30px 20px; border-radius: var(--radius);
+            box-shadow: var(--shadow); border: 1px solid #e2e8f0;
+        }
+        .tasbeeh-ring {
+            width: 150px; height: 150px; margin: 0 auto; border-radius: 50%;
+            background: #f0fdf4; border: 6px solid #16a34a;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 25px rgba(22, 163, 74, 0.2);
+            position: relative;
+        }
+        .tasbeeh-btn-glossy {
+            width: 130px; height: 130px; border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #4ade80, #15803d);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: white; cursor: pointer; 
+            box-shadow: inset 0 5px 10px rgba(255,255,255,0.4), 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+        }
+        .tasbeeh-btn-glossy:active { transform: scale(0.95); }
+        .t-num-big { font-size: 3.5rem; font-weight: 700; line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .t-hint { font-size: 0.8rem; opacity: 0.9; }
         
-        .clean-card {
-            background: white; border-radius: var(--radius); padding: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; margin-bottom: 15px;
+        /* 🔥 উন্নত হাদিয়া সেকশন (ব্ল্যাক & গোল্ড) */
+        .hadiya-royal {
+            margin: 30px 20px 50px; padding: 25px; border-radius: 20px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            text-align: center; border: 2px solid #b45309;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2); position: relative; overflow: hidden;
         }
-
-        /* টুলস বাটন */
-        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .tool-btn {
-            background: #f0fdf4; border: 1px solid #bbf7d0; padding: 15px;
-            border-radius: 12px; text-align: center; cursor: pointer;
+        .hadiya-royal::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite; pointer-events: none;
         }
-        .tool-btn:active { background: #dcfce7; }
-        .tool-btn i { font-size: 1.5rem; color: var(--primary); margin-bottom: 5px; }
-        .tool-btn h4 { font-size: 0.9rem; margin-bottom: 2px; }
-        .tool-btn small { font-size: 0.7rem; color: #666; }
+        @keyframes rotate { 0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);} }
 
-        /* ইনপুট ফিল্ড */
-        .input-group { display: flex; gap: 5px; margin-top: 10px; }
-        .input-box { flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; }
-        .btn-black { background: #1e293b; color: white; padding: 0 15px; border-radius: 8px; font-weight: 600; }
-        #qr-display { text-align: center; margin-top: 15px; display: none; }
-
-        /* যাতায়াত বাটন */
-        details { border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 10px; }
-        summary { font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; }
-        .svc-btn-row { display: flex; gap: 10px; margin-top: 10px; }
-        .svc-btn { flex: 1; padding: 8px; background: var(--gold); color: white; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
-
-        /* মার্কেট স্ক্রল */
-        .shop-scroll { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 5px; }
-        .shop-item {
-            min-width: 140px; background: white; border-radius: 15px; padding: 10px;
-            text-align: center; border: 1px solid #e2e8f0; position: relative;
+        .hand-heart-anim {
+            font-size: 2.5rem; color: #fbbf24; margin-bottom: 10px; display: inline-block;
+            animation: heartBeat 1.5s infinite;
         }
-        .shop-btn { background: #25D366; color: white; width: 100%; padding: 5px; border-radius: 5px; margin-top: 5px; font-size: 0.8rem; }
+        @keyframes heartBeat { 0% {transform: scale(1);} 15% {transform: scale(1.2);} 30% {transform: scale(1);} 45% {transform: scale(1.1);} 60% {transform: scale(1);} }
+
+        .h-title-royal { font-size: 1.3rem; font-weight: 700; color: #fbbf24; margin-bottom: 8px; font-family: 'Hind Siliguri', sans-serif; }
+        .h-desc-royal { font-size: 0.9rem; color: #e2e8f0; line-height: 1.6; margin-bottom: 20px; }
         
-        /* তসবিহ ডিজাইন */
-        .tasbeeh-circle {
-            width: 100px; height: 100px; background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-radius: 50%; margin: 0 auto; border: 4px solid var(--gold);
-            display: flex; align-items: center; justify-content: center; color: white;
-            font-size: 2rem; font-weight: 700; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            user-select: none;
+        .upi-box-royal {
+            background: rgba(255,255,255,0.1); border: 1px dashed #f59e0b;
+            padding: 10px 15px; border-radius: 12px; display: flex;
+            align-items: center; justify-content: space-between; gap: 10px;
         }
-        .tasbeeh-circle:active { transform: scale(0.95); }
+        .upi-text-royal { font-family: monospace; font-size: 1.1rem; color: white; letter-spacing: 0.5px; }
+        .copy-icon-royal { 
+            color: #fbbf24; font-size: 1.2rem; cursor: pointer; padding: 5px;
+            transition: transform 0.2s;
+        }
+        .copy-icon-royal:active { transform: scale(1.2); }
 
-        /* বটম ডক (Bottom Menu) */
-        .bottom-dock {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 400px;
-            background: rgba(30, 41, 59, 0.95); backdrop-filter: blur(10px);
-            border-radius: 30px; padding: 12px 25px;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25); z-index: 1000;
-        }
-        .dock-btn { color: rgba(255,255,255,0.6); font-size: 1.3rem; transition: 0.3s; cursor: pointer; }
-        .dock-btn.active { color: white; }
-        
-        .contact-main-btn {
-            background: var(--contact-color); color: white; border: none; padding: 10px 18px;
-            border-radius: 20px; font-weight: 600; font-size: 0.85rem;
-            display: flex; align-items: center; gap: 8px;
-            box-shadow: 0 5px 15px rgba(2, 132, 199, 0.4);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-
-        /* পপ-আপ মোডাল (Contact) */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); z-index: 2000;
-            display: none; align-items: center; justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-        .modal-box {
-            background: white; width: 85%; max-width: 320px;
-            border-radius: 20px; padding: 25px; text-align: center;
-            animation: popUp 0.3s ease-out;
-        }
-        @keyframes popUp { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
-        
-        .contact-row {
-            display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
-            background: #f8fafc; padding: 10px; border-radius: 12px; text-align: left;
-            border: 1px solid #e2e8f0; transition: 0.2s; cursor: pointer;
-        }
-        .contact-row:active { background: #e0f2fe; border-color: var(--contact-color); }
-        .c-icon {
-            width: 40px; height: 40px; background: #e0f2fe; color: var(--contact-color);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-        }
-        .c-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
-        .c-info p { font-size: 0.75rem; color: #666; }
-
+        /* ফুটার */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--white); padding: 8px 0; display: flex; justify-content: space-around; align-items: center; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); z-index: 1000; border-top-left-radius: 20px; border-top-right-radius: 20px; }
+        .nav-item i { font-size: 1.2rem; color: #94a3b8; display: block; }
+        .call-btn { background: var(--primary); color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-top: -30px; box-shadow: 0 5px 15px rgba(21, 128, 61, 0.4); border: 4px solid var(--bg-body); }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>বিশ্ব ইজতেমা ২০২৬ পুইনান</h1>
-        <p>২রা - ৫ই জানুয়ারি • পুইনান, হুগলি, পশ্চিমবাংলা, ভারত<br><small>2nd - 5th Jan • Hooghly</small></p>
-        <div class="action-row">
-            <button class="header-btn" onclick="openContactModal()"><i class="fas fa-headset"></i> যোগাযোগ (Help)</button>
-            <button class="header-btn" onclick="document.getElementById('map-sec').scrollIntoView({behavior: 'smooth'})"><i class="fas fa-map"></i> ম্যাপ (Map)</button>
+        <h1>পশ্চিমবঙ্গ উমুমী ইজতেমা ২০২৬ </h1>
+        <p><i class="far fa-calendar-alt"></i> ২রা, ৩রা ও ৪ঠা জানুয়ারি</p>
+    </div>
+
+    <div class="mini-info-card">
+        <div class="info-content">
+            <div class="date-strip">
+                <div class="date-text" id="eng-date">...</div>
+                <div class="hijri-text" id="hijri-date">...</div>
+            </div>
+            <div class="namaz-scroll">
+                <div class="namaz-item"><div class="n-name">ফজর</div><div class="n-time">৫:০০</div></div>
+                <div class="namaz-item"><div class="n-name">জোহর</div><div class="n-time">১:১৫</div></div>
+                <div class="namaz-item"><div class="n-name">আছর</div><div class="n-time">৩:৪৫</div></div>
+                <div class="namaz-item"><div class="n-name">মাগরিব</div><div class="n-time">৫:১৫</div></div>
+                <div class="namaz-item"><div class="n-name">এশা</div><div class="n-time">৭:০০</div></div>
+            </div>
+        </div>
+        <div class="notice-board">
+            <div class="notice-icon">📢 নোটিশ</div>
+            <div class="marquee-text">
+                বিশ্ব ইজতেমা সফল হোক • ৩ নাম্বার গেটে ফ্রি মেডিকেল ক্যাম্প চলছে • যত্রতত্র ময়লা ফেলবেন না • ওজুখানায় পানি সাশ্রয় করুন।
+            </div>
         </div>
     </div>
 
-    <div class="info-float">
-        <div class="timer-box"><h3 id="days">00</h3><span>দিন / DAYS</span></div>
-        <div style="width:1px; background:#cbd5e1;"></div>
-        <div class="timer-box"><h3 id="hours">00</h3><span>ঘণ্টা / HOURS</span></div>
-        <div style="width:1px; background:#cbd5e1;"></div>
-        <div class="timer-box"><h3 id="temp">24°C</h3><span>আবহাওয়া / WEATHER</span></div>
-    </div>
-
-    <div class="notice-box">
-        <span class="notice-tag">জরুরি / NOTICE</span>
-        <marquee behavior="scroll" direction="left" scrollamount="5">
-            ইজতেমা শুরু হতে আর মাত্র কয়েকদিন বাকি • সাথীরা শীতের কাপড় সাথে রাখুন • প্রয়োজনে কন্ট্রোল রুমে যোগাযোগ করুন।
-        </marquee>
-    </div>
-
-    <div class="grid-nav">
-        <div class="nav-box" onclick="location.href='#tools'"><div class="icon-circle"><i class="fas fa-thumbtack"></i></div><span>টুলস<br>Tools</span></div>
-        <div class="nav-box" onclick="location.href='#transport'"><div class="icon-circle"><i class="fas fa-route"></i></div><span>যাতায়াত<br>Travel</span></div>
-        <div class="nav-box" onclick="location.href='#map-sec'"><div class="icon-circle"><i class="fas fa-map-marked-alt"></i></div><span>ম্যাপ<br>Map</span></div>
-        <div class="nav-box" onclick="location.href='#shop'"><div class="icon-circle"><i class="fas fa-store"></i></div><span>মার্কেট<br>Market</span></div>
-    </div>
-
-    <div class="container">
-        
-        <div class="section-head" id="tools">স্মার্ট টুলস (Smart Tools)</div>
-        <div class="clean-card">
-            <div class="tools-grid">
-                <div class="tool-btn" onclick="saveLocation()">
-                    <i class="fas fa-map-pin"></i>
-                    <h4>লোকেশন সেভ<br>Save Location</h4>
-                    <small id="loc-status">তাঁবুতে পৌঁছে চাপুন / Tap here</small>
-                </div>
-                <div class="tool-btn" onclick="openGoogleMaps()">
-                    <i class="fas fa-search"></i>
-                    <h4>খিত্তা খুঁজুন<br>Find Khitta</h4>
-                    <small>ম্যাপ গাইড / Map Guide</small>
-                </div>
-            </div>
-        </div>
-
-        <div class="clean-card">
-            <h4 style="font-size:1rem; margin-bottom:5px;"><i class="fas fa-id-card"></i> ডিজিটাল আইডি / Digital ID</h4>
-            <div class="input-group">
-                <input type="text" id="qr-input" class="input-box" placeholder="নাম ও ফোন / Name & Phone">
-                <button class="btn-black" onclick="generateQR()">তৈরি / Create</button>
-            </div>
-            <div id="qr-display">
-                <img id="qr-img" src="" width="120" style="border:4px solid white; box-shadow: 0 0 10px #ddd;">
-            </div>
-        </div>
-
-        <div class="section-head" id="transport">যাতায়াত (Transport)</div>
-        <div class="clean-card">
-            <details open>
-                <summary><span><i class="fas fa-train"></i> ট্রেন / Train</span> <i class="fas fa-chevron-down"></i></summary>
-                <div style="padding-top:10px; font-size:0.9rem; color:#64748b;">
-                    • হাওড়া থেকে কর্ড লাইনের ট্রেন ধরে 'ধনিয়াখালি হল্ট' বা শিয়ালদহ: ডানকুনি হয়ে কর্ড লাইনের ট্রেন ধরুন।<br>
-                    • সেখান থেকে টোটো/অটোতে ইজতেমা ময়দান।
-                </div>
-            </details>
-            <details>
-                <summary><span><i class="fas fa-bus"></i> বাস / Bus</span> <i class="fas fa-chevron-down"></i></summary>
-                <div style="padding-top:10px; font-size:0.9rem; color:#64748b;">
-                    ধর্মতলা/হাওড়া থেকে বর্ধমানগামী বাসে উঠে 'পুইনান মোড়'-এ নামুন।<br>
-                    Stop: 'Puinan More'.
-                </div>
-            </details>
-            <div class="svc-btn-row">
-                <button class="svc-btn" onclick="orderService('Bike Taxi')"><i class="fas fa-motorcycle"></i> বাইক / Bike</button>
-                <button class="svc-btn" onclick="orderService('Wheelchair')"><i class="fas fa-wheelchair"></i> হুইলচেয়ার</button>
-            </div>
-        </div>
-
-        <div class="section-head" id="map-sec">🗺️ লাইভ ম্যাপ (Live Map)</div>
-        <div class="clean-card" style="padding:0; overflow:hidden;">
-            <iframe 
-                width="100%" 
-                height="200" 
-                frameborder="0" 
-                scrolling="no" 
-                marginheight="0" 
-                marginwidth="0" 
-                src="https://maps.google.com/maps?q=Puinan,+Hooghly&t=&z=13&ie=UTF8&iwloc=&output=embed">
-            </iframe>
-            
-            <div style="padding:15px; display:flex; gap:10px;">
-                <button onclick="openGoogleMaps()" style="flex:2; background:#2563eb; color:white; padding:10px; border-radius:8px; font-weight:600;">
-                    <i class="fas fa-location-arrow"></i> ম্যাপে খুলুন / Open Map
-                </button>
-                <button onclick="shareSite()" style="flex:1; background:#25D366; color:white; padding:10px; border-radius:8px;">
-                    <i class="fab fa-whatsapp"></i> শেয়ার
-                </button>
-            </div>
-        </div>
-
-        <div class="section-head" id="shop">মার্কেট (Market)</div>
-        <div class="shop-scroll">
-            
-            <div class="shop-item">
-                <i class="fas fa-bolt" style="font-size:1.5rem; color:#ca8a04;"></i>
-                <h4 style="font-size:0.8rem; margin-top:5px;">মোবাইল চার্জ</h4>
-                <p style="font-size:0.7rem; color:#666;">Charging Point</p>
-                <button class="shop-btn" style="background:#0ea5e9;" onclick="orderService('Charging Slot')">Book</button>
-            </div>
-
-            <div class="shop-item">
-                <i class="fas fa-gift" style="font-size:1.5rem; color:var(--gold);"></i>
-                <h4 style="font-size:0.8rem; margin-top:5px;">লোকাল আতর</h4>
-                <p style="font-size:0.7rem; color:#666;">Ator</p>
-                <button class="shop-btn" onclick="orderProduct('Ator')">Order</button>
-            </div>
-
-            <div class="shop-item">
-                <i class="fas fa-bed" style="font-size:1.5rem; color:#2563eb;"></i>
-                <h4 style="font-size:0.8rem; margin-top:5px;">স্লিপিং ব্যাগ</h4>
-                <p style="font-size:0.7rem; color:#666;">Sleeping Bag</p>
-                <button class="shop-btn" style="background:#333;" onclick="window.open('https://amazon.in', '_blank')">Buy</button>
-            </div>
-
-            <div class="shop-item">
-                <i class="fas fa-lock" style="font-size:1.5rem; color:#ef4444;"></i>
-                <h4 style="font-size:0.8rem; margin-top:5px;">লকার</h4>
-                <p style="font-size:0.7rem; color:#666;">Locker</p>
-                <button class="shop-btn" onclick="orderService('Locker')">Book</button>
-            </div>
-        </div>
-
-        <div class="section-head">আমল ও দোয়া (Dua)</div>
-        <div class="clean-card" style="text-align:center;">
-            <div class="tasbeeh-circle" id="count-display" onclick="countTasbeeh()">0</div>
-            <p style="font-size:0.8rem; margin-top:5px;">গণনা করতে ট্যাপ করুন / Tap to count</p>
-            
-            <button onclick="resetTasbeeh()" style="margin-top:10px; background:#fee2e2; color:#ef4444; padding:5px 15px; border-radius:20px; font-weight:600; font-size:0.8rem;">
-                <i class="fas fa-redo"></i> রিসেট / Reset
+    <div class="location-smart-card">
+        <div id="view-unsaved">
+            <button class="btn-save-big" onclick="captureLocation()">
+                <i class="fas fa-map-marker-alt"></i> তাঁবুর লোকেশন সেভ করুন
             </button>
-            
-            <div style="text-align:left; margin-top:20px; border-top:1px dashed #e2e8f0; padding-top:10px;">
-                <h4 style="font-size:0.9rem; margin-bottom:5px;">🤲 দোয়ার দেওয়াল / Dua Wall</h4>
-                <div style="background:#f8fafc; padding:10px; border-radius:10px; font-size:0.85rem;">
-                    <p>• হে আল্লাহ, আমাদের ইজতেমা কবুল করুন। (Allah accept our Ijtema)</p>
-                    <p>• সকল সাথীকে সুস্থ ও নিরাপদ রাখুন। (Keep everyone safe)</p>
-                </div>
-            </div>
+            <p style="font-size: 0.8rem; color: #64748b; margin-top: 8px;">তাঁবুতে পৌঁছে এই বাটনে চাপ দিন</p>
         </div>
-        
-        <div class="clean-card" style="border-left: 4px solid #ef4444; background:#fff5f5;">
-            <h4 style="font-size:0.9rem; color:#ef4444;">📢 হারানো বিজ্ঞপ্তি / Lost & Found</h4>
-            <p style="font-size:0.8rem; margin-top:5px;">কারো কিছু হারিয়ে গেলে কন্ট্রোল রুমে জানান।</p>
-            <button onclick="orderService('Lost Item Report')" style="background:#ef4444; color:white; padding:5px 10px; border-radius:5px; margin-top:8px; font-size:0.75rem;">রিপোর্ট / Report</button>
-        </div>
-
-    </div>
-
-    <div id="contactModal" class="modal-overlay">
-        <div class="modal-box">
-            <h3 style="color:#0f172a; margin-bottom:20px;">📞 জরুরি যোগাযোগ</h3>
-            
-            <div class="contact-row" onclick="window.location.href='tel:'">
-                <div class="c-icon" style="background:#fee2e2; color:#ef4444;"><i class="fas fa-shield-alt"></i></div>
-                <div class="c-info">
-                    <h4>কন্ট্রোল রুম (Office)</h4>
-                    <p>সরাসরি কল করুন</p>
-                </div>
+        <div id="view-saved" class="saved-controls">
+            <div class="saved-status"><i class="fas fa-check-circle"></i> লোকেশন সেভ আছে</div>
+            <div class="action-grid">
+                <button class="btn-nav" onclick="navigateSaved()"><i class="fas fa-location-arrow"></i> পথ দেখান</button>
+                <button class="btn-del" onclick="clearLocation()"><i class="fas fa-trash-alt"></i> মুছুন</button>
             </div>
-
-            <div class="contact-row" onclick="window.location.href='tel:108'">
-                <div class="c-icon" style="background:#dcfce7; color:#16a34a;"><i class="fas fa-ambulance"></i></div>
-                <div class="c-info">
-                    <h4>অ্যাম্বুলেন্স (Health)</h4>
-                    <p>মেডিকেল ইমার্জেন্সি</p>
-                </div>
-            </div>
-
-            <div class="contact-row" onclick="orderService('Help')">
-                <div class="c-icon"><i class="fab fa-whatsapp"></i></div>
-                <div class="c-info">
-                    <h4>হোয়াটসঅ্যাপ সাপোর্ট</h4>
-                    <p>চ্যাট করুন (Chat)</p>
-                </div>
-            </div>
-
-            <button onclick="closeContactModal()" style="margin-top:10px; background:#f1f5f9; color:#64748b; padding:10px 30px; border-radius:50px; font-weight:600;">বন্ধ করুন</button>
         </div>
     </div>
 
-    <div class="bottom-dock">
-        <i class="fas fa-home dock-btn active" onclick="window.scrollTo(0,0)"></i>
-        <i class="fab fa-whatsapp dock-btn" style="color:#25D366;" onclick="shareSite()"></i>
+    <div class="quick-actions">
+        <div class="action-btn" onclick="window.open('https://www.google.com/maps/search/Puinan+Ijtema+Maidan')">
+            <i class="fas fa-map-marked-alt icon-small"></i> গুগল ম্যাপ
+        </div>
+        <div class="action-btn" onclick="shareApp()">
+            <i class="fas fa-share-alt icon-small"></i> অ্যাপ শেয়ার
+        </div>
+    </div>
+
+    <div class="section-title">ইজতেমা ম্যাপ</div>
+    <div class="map-wrapper">
+        <img src="map.jpg" alt="Map" style="width: 100%; display: block;">
+    </div>
+
+    <div class="section-title">যোগাযোগ</div>
+    <div class="transport-card">
+        <div class="route-box">
+            <div class="route-icon bg-train"><i class="fas fa-train"></i></div>
+            <div class="route-title">হাওড়া থেকে (ট্রেন)</div>
+            <div class="route-desc">
+                হাওড়া স্টেশন থেকে <span class="highlight">'হাওড়া-বর্ধমান কর্ড'</span> লাইনের লোকাল ট্রেনে উঠুন। ১ ঘণ্টা পর <span class="highlight">'ধনিয়াখালি হল্ট'</span> অথবা <span class="highlight">'বেলমুড়ি'</span> স্টেশনে নামুন।
+            </div>
+        </div>
+        <div class="route-box">
+            <div class="route-icon bg-train"><i class="fas fa-subway"></i></div>
+            <div class="route-title">শিয়ালদহ থেকে (ট্রেন)</div>
+            <div class="route-desc">
+                শিয়ালদহ থেকে <span class="highlight">'ডানকুনি'</span> লোকালে আসুন। ডানকুনি নেমে <span class="highlight">'বর্ধমান কর্ড'</span> লাইনের ট্রেন ধরুন।
+            </div>
+        </div>
+        <div class="route-box">
+            <div class="route-icon bg-bus"><i class="fas fa-bus"></i></div>
+            <div class="route-title">বাস পথ</div>
+            <div class="route-desc">
+                কলকাতা বা হাওড়া বাসস্ট্যান্ড থেকে <span class="highlight">বর্ধমান বা আরামবাগ</span> গামী বাসে উঠে <span class="highlight">'পুইনান মোড়'</span> নামুন।
+            </div>
+        </div>
+    </div>
+
+    <div class="lf-whatsapp-card">
+        <div style="font-weight: 700; color: #334155; margin-bottom: 5px;"><i class="fab fa-whatsapp"></i> হারানো ও প্রাপ্তি সহায়তা</div>
+        <p style="font-size: 0.8rem; color: #64748b;"></p>
+        <div class="wa-btn-group">
+            <button class="wa-btn wa-lost" onclick="reportLost()"><i class="fas fa-search-location" style="font-size: 1.4rem;"></i> হারিয়েছে</button>
+            <button class="wa-btn wa-found" onclick="reportFound()"><i class="fas fa-hand-holding" style="font-size: 1.4rem;"></i> পেয়েছি</button>
+        </div>
+    </div>
+
+    <div class="section-title">ইজতেমার মূল উদ্দেশ্য</div>
+    <div class="article-card">
+        <ul class="article-list">
+            <li>
+                <strong>দ্বীনি বয়ান ও শিক্ষা</strong>
+                দেশ-বিদেশের অভিজ্ঞ আলেম ও মুরব্বিদের কাছ থেকে কুরআন ও হাদিসের আলোকে বয়ান শোনা।
+            </li>
+            <li>
+                <strong>ঈমান ও আমলের উন্নতি</strong>
+                মুসল্লিদের মধ্যে ঈমানি চেতনা বৃদ্ধি করা এবং দ্বীনের প্রচার ও প্রসারের জন্য কাজ করতে উদ্বুদ্ধ করা।
+            </li>
+            <li>
+                <strong>আল্লাহমুখী হওয়া</strong>
+                দুনিয়ামুখী চিন্তা ত্যাগ করে আল্লাহমুখী হওয়ার কৌশল নির্ধারণ ও চর্চা করা।
+            </li>
+            <li>
+                <strong>বিশ্ব শান্তি ও কল্যাণ</strong>
+                আখেরি মোনাজাতের মাধ্যমে বিশ্বশান্তি ও মুসলিম উম্মাহর সার্বিক কল্যাণের জন্য প্রার্থনা করা।
+            </li>
+            <li>
+                <strong>ভ্রাতৃত্ব ও ঐক্য</strong>
+                মুসলিম সম্প্রদায়ের মধ্যে ভ্রাতৃত্ব, সংহতি, পারস্পরিক ভালোবাসা ও শ্রদ্ধাবোধ তৈরি করা।
+            </li>
+            <li>
+                <strong>জামাতে দ্বীনের কাজ</strong>
+                মানুষকে 'জামাতে বের' হওয়ার জন্য প্রস্তুত করা এবং দ্বীন প্রচারে অংশগ্রহণ করানো।
+            </li>
+        </ul>
+    </div>
+
+    <div class="section-title">ডিজিটাল তসবিহ</div>
+    <div class="tasbeeh-card-royal">
+        <div class="tasbeeh-ring">
+            <div class="tasbeeh-btn-glossy" onclick="tCount()">
+                <div class="t-num-big" id="t-count">0</div>
+                <div class="t-hint">চাপ দিন</div>
+            </div>
+        </div>
+        <button onclick="tReset()" style="font-size: 0.9rem; color: #ef4444; background:none; font-weight:600; border:none; margin-top:15px;">রিসেট করুন</button>
+    </div>
+
+    <div class="hadiya-royal">
+        <div class="hand-heart-anim">
+            <i class="fas fa-hand-holding-heart"></i>
+        </div>
+        <div class="h-title-royal">মেহনতের হাদিয়া</div>
+        <div class="h-desc-royal">
+            আপনার এই হাদিয়া আমাদের জন্য ভালোবাসা স্বরূপ। এটি আমাদের এই দ্বীনি খেদমত চালিয়ে যেতে সাহায্য করবে। আল্লাহ আপনাকে উত্তম প্রতিদান দিন।
+        </div>
         
-        <button class="contact-main-btn" onclick="openContactModal()">
-            <i class="fas fa-phone-alt"></i> হেল্পলাইন
-        </button>
-        
-        <i class="fas fa-file-download dock-btn" onclick="alert('PDF গাইড শীঘ্রই আসছে...')"></i>
-        <i class="fas fa-user dock-btn"></i>
+        <div class="upi-box-royal">
+            <span class="upi-text-royal">hadiya@jio</span>
+            <i class="fas fa-copy copy-icon-royal" onclick="copyUPI()"></i>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="window.scrollTo(0,0)"><i class="fas fa-home"></i></div>
+        <div class="call-btn" onclick="window.open('tel:+916296495389')"><i class="fas fa-phone"></i></div>
+        <div class="nav-item" onclick="shareApp()"><i class="fab fa-whatsapp"></i></div>
     </div>
 
     <script>
-        // ১. কাউন্টডাউন টাইমার
-        const targetDate = new Date("Jan 2, 2026 00:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-            if(diff > 0) {
-                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            }
-        }, 1000);
-
-        // ২. GPS লোকেশন
-        function saveLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    localStorage.setItem('savedLat', position.coords.latitude);
-                    localStorage.setItem('savedLng', position.coords.longitude);
-                    document.getElementById('loc-status').innerText = "সেভ হয়েছে / Saved ✅";
-                    alert("আপনার বর্তমান লোকেশন সেভ হয়েছে!");
-                }, function(error) {
-                    alert("GPS অন করুন বা ব্রাউজারের অনুমতি দিন।");
-                });
-            } else { alert("GPS সাপোর্ট করছে না।"); }
+        // তারিখ
+        function updateDate() {
+            const date = new Date();
+            document.getElementById('eng-date').innerText = date.toLocaleDateString('bn-BD', { weekday: 'long', day: 'numeric', month: 'long' });
+            
+            const months = ["মুহাররম", "সফর", "রবিউল আউয়াল", "রবিউস সানি", "জমাদিউল আউয়াল", "জমাদিউস সানি", "রজব", "শাবান", "রমজান", "শাওয়াল", "জিলক্বদ", "জিলহজ্জ"];
+            try {
+                const parts = new Intl.DateTimeFormat('bn-BD-u-ca-islamic', {day: 'numeric', month: 'numeric', year: 'numeric'}).formatToParts(date);
+                let day = "", mIdx = 0, year = "";
+                parts.forEach(p => { if(p.type==='day') day=p.value; if(p.type==='month') mIdx=parseInt(p.value)-1; if(p.type==='year') year=p.value; });
+                document.getElementById('hijri-date').innerText = `${day}ই ${months[mIdx] || 'রজব'}, ${year}`;
+            } catch(e) { document.getElementById('hijri-date').innerText = "১৪৪৭ হিজরি"; }
         }
 
-        // ৩. QR কোড জেনারেটর
-        function generateQR() {
-            var text = document.getElementById('qr-input').value;
-            if(text) {
-                var url = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(text);
-                document.getElementById('qr-img').src = url;
-                document.getElementById('qr-display').style.display = "block";
-            } else {
-                alert("দয়া করে নাম ও ফোন নম্বর লিখুন");
+        // লোকেশন UI
+        function updateLocUI() {
+            const hasLoc = localStorage.getItem('ij_lat');
+            document.getElementById('view-unsaved').style.display = hasLoc ? 'none' : 'block';
+            document.getElementById('view-saved').style.display = hasLoc ? 'block' : 'none';
+        }
+        function captureLocation() {
+            if(navigator.geolocation) {
+                const btn = document.querySelector('.btn-save-big');
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> সেভ হচ্ছে...';
+                navigator.geolocation.getCurrentPosition(pos => {
+                    localStorage.setItem('ij_lat', pos.coords.latitude);
+                    localStorage.setItem('ij_lng', pos.coords.longitude);
+                    updateLocUI();
+                    btn.innerHTML = '<i class="fas fa-map-marker-alt"></i> তাঁবুর লোকেশন সেভ করুন';
+                    alert("✅ লোকেশন সেভ হয়েছে!");
+                }, () => { alert("GPS অন করুন"); btn.innerHTML = '<i class="fas fa-map-marker-alt"></i> তাঁবুর লোকেশন সেভ করুন'; });
             }
         }
+        function navigateSaved() {
+            const lat = localStorage.getItem('ij_lat');
+            const lng = localStorage.getItem('ij_lng');
+            if(lat) window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=walking`);
+        }
+        function clearLocation() {
+            if(confirm('লোকেশন মুছে ফেলতে চান?')) { localStorage.removeItem('ij_lat'); localStorage.removeItem('ij_lng'); updateLocUI(); }
+        }
 
-        // ৪. তসবিহ গণনা
+        // তসবিহ
         let count = 0;
-        function countTasbeeh() {
-            count++;
-            document.getElementById('count-display').innerText = count;
-            if (navigator.vibrate) navigator.vibrate(50);
-        }
-        function resetTasbeeh() {
-            if(confirm("গণনা মুছে ফেলবেন? (Reset Count?)")) {
-                count = 0;
-                document.getElementById('count-display').innerText = 0;
-            }
-        }
+        function tCount() { count++; document.getElementById('t-count').innerText = count; if(navigator.vibrate) navigator.vibrate(40); }
+        function tReset() { count = 0; document.getElementById('t-count').innerText = 0; }
 
-        // ৫. যোগাযোগ ও অর্ডার (WhatsApp)
-        // 🛑🛑 এখানে আপনার ফোন নম্বর দিন 🛑🛑
-        var myPhone = "916296495389"; 
+        // WhatsApp Report
+        function reportLost() { window.open("https://wa.me/916296495389?text=" + encodeURIComponent("আসসালামু আলাইকুম, আমি একটি জিনিস হারিয়েছি। বিবরণ: ")); }
+        function reportFound() { window.open("https://wa.me/916296495389?text=" + encodeURIComponent("আসসালামু আলাইকুম, আমি একটি জিনিস পেয়েছি। বিবরণ: ")); }
 
-        function orderService(service) {
-            window.open("https://wa.me/" + myPhone + "?text=" + encodeURIComponent("I need help with: " + service), '_blank');
-        }
-        function orderProduct(prod) {
-            window.open("https://wa.me/" + myPhone + "?text=" + encodeURIComponent("I want to order: " + prod), '_blank');
-        }
-        function shareSite() {
-            window.open("https://wa.me/?text=" + encodeURIComponent("Puinan Ijtema 2026 App Link: " + window.location.href), '_blank');
-        }
-        
-        // ৬. গুগল ম্যাপ
-        function openGoogleMaps() {
-            var lat = localStorage.getItem('savedLat');
-            var lng = localStorage.getItem('savedLng');
-            if (lat && lng) {
-                window.open("https://www.google.com/maps?q=" + lat + "," + lng, '_blank');
-            } else {
-                window.open("https://www.google.com/maps/search/?api=1&query=Puinan+Hooghly", '_blank');
-            }
-        }
-
-        // ৭. কন্টাক্ট মোডাল
-        function openContactModal() {
-            document.getElementById('contactModal').style.display = 'flex';
-        }
-        function closeContactModal() {
-            document.getElementById('contactModal').style.display = 'none';
-        }
-    </script>
+        window.onload = function() { updateDate(); updateLocUI(); };
+        function copyUPI() { navigator.clipboard.writeText("hadiya@jio").then(() => alert("UPI কপি হয়েছে")); }
+        function shareApp() { window.open("https://wa.me/?text=" + encodeURIComponent("ইজতেমা গাইড: " + window.location.href)); }
+    </script>l
 </body>
 </html>
- 
