@@ -378,10 +378,8 @@
         function tCount() { count++; document.getElementById('t-count').innerText = count; if(navigator.vibrate) navigator.vibrate(40); }
         function tReset() { count = 0; document.getElementById('t-count').innerText = 0; }
 
-        // WhatsApp Report
-        function reportLost() { window.open("https://wa.me/?text=Not Available" + encodeURIComponent("আসসালামু আলাইকুম, আমি একটি জিনিস হারিয়েছি। বিবরণ: ")); }
-        function reportFound() { window.open("https://wa.me/?text=Not available" + encodeURIComponent("আসসালামু আলাইকুম, আমি একটি জিনিস পেয়েছি। বিবরণ: ")); }
-
+        
+        
         window.onload = function() { updateDate(); updateLocUI(); };
         function copyUPI() { navigator.clipboard.writeText("hadiya@jio").then(() => alert("UPI কপি হয়েছে")); }
         function shareApp() { window.open("https://wa.me/?text=" + encodeURIComponent("ইজতেমা গাইড: " + window.location.href)); }
